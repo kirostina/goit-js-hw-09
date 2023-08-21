@@ -34,7 +34,7 @@ const options = {
 ],
 };
 
-flatpickr("input#datetime-picker, options");
+flatpickr("input#datetime-picker", options);
 
 function countDown() {
     if (isActive)
@@ -73,5 +73,5 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-    return string(value).padStart(2, '0');
+    return String(value).padStart(2, '0');
 }
