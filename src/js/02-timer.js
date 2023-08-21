@@ -34,7 +34,7 @@ const options = {
 ],
 };
 
-flatpickr("input#datetime-picker, {options}");
+flatpickr("input#datetime-picker, options");
 
 function countDown() {
     if (isActive)
