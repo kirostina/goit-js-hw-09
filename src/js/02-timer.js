@@ -28,12 +28,15 @@ const options = {
           refs.startB.setAttribute('disabled', '');
           return;
       }
-      refs.startB.removeAttribute('disabled');
+      refs.startB.removeAttribute('disabled', '');
       diffT = selectedDates[0].getTime() - options.defaultDate.getTime();
-      flatpickr("input#datetime-picker", options).close();
   },
-],
+    ],
 };
+
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
+}
 
 flatpickr("input#datetime-picker", options);
 
@@ -47,12 +50,16 @@ function countDown() {
             clearInterval(interid);
             return;
         }
-        refs.daysT.textContent = addLeadingZero(convertMs(diffT).days);
-        refs.hoursT.textContent = addLeadingZero(convertMs(diffT).hours);
-        refs.minutesT.textContent = addLeadingZero(convertMs(diffT).minutes);
-        refs.secondsT.textContent = addLeadingZero(convertMs(diffT).seconds);
+        const remainingTime = convertMs(diffT);
+    refs.daysT.textContent = addLeadingZero(remainingTime.days);
+    refs.hoursT.textContent = addLeadingZero(remainingTime.hours);
+    refs.minutesT.textContent = addLeadingZero(remainingTime.minutes);
+    refs.secondsT.textContent = addLeadingZero(remainingTime.seconds);
     }, 1000);
+ 
 }
+ 
+
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -76,10 +83,15 @@ function convertMs(ms) {
 // function addLeadingZero(value) {
 //     return String(value).padStart(2, '0');
 // }
+// function addLeadingZero(value) {
+//   return value.padStart(2, '0');
+// }
 
-function addLeadingZero(value) {
-  return value.padStart(2, '0');
-}
+//         refs.daysT.textContent = addLeadingZero(convertMs(diffT).days);
+//         refs.hoursT.textContent = addLeadingZero(convertMs(diffT).hours);
+//         refs.minutesT.textContent = addLeadingZero(convertMs(diffT).minutes);
+//         refs.secondsT.textContent = addLeadingZero(convertMs(diffT).seconds);
+
 
 // function addLeadingZero(value) {
 //     return value < 10 ? `0${value}` : value;
