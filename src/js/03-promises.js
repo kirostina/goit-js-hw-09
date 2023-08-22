@@ -17,11 +17,15 @@ function createPromise(position, delay) {
 
 form.addEventListener('submit', evt => {
   evt.preventDefault();
-    createPromise(2, 1500)
+  let count = Number(delay.value);
+  for (let i = 1; i <= amount.value; i += 1) {
+    createPromise(i, count)
   .then(({ position, delay }) => {
-    Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
   })
   .catch(({ position, delay }) => {
-    Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
   });
+    count += Number(step.value);
+  }
 })
