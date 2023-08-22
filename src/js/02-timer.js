@@ -25,12 +25,12 @@ const options = {
   onClose : [function (selectedDates) {
       if (selectedDates[0].getTime() - options.defaultDate.getTime() < 0) {
           Notify.failure("Please choose a date in the future");
-          refs.startB.removeAttribute('disabled', '');
+          refs.startB.setAttribute('disabled', '');
           return;
       }
       refs.startB.removeAttribute('disabled');
       diffT = selectedDates[0].getTime() - options.defaultDate.getTime();
-      instance.close();
+      flatpickr("input#datetime-picker", options).close();
   },
 ],
 };
@@ -47,10 +47,10 @@ function countDown() {
             clearInterval(interid);
             return;
         }
-        refs.daysT.textContent = convertMs(diffT).days;
-        refs.hoursT.textContent = convertMs(diffT).hours;
-        refs.minutesT.textContent = convertMs(diffT).minutes;
-        refs.secondsT.textContent = convertMs(diffT).seconds;
+        refs.daysT.textContent = addLeadingZero(convertMs(diffT).days);
+        refs.hoursT.textContent = addLeadingZero(convertMs(diffT).hours);
+        refs.minutesT.textContent = addLeadingZero(convertMs(diffT).minutes);
+        refs.secondsT.textContent = addLeadingZero(convertMs(diffT).seconds);
     }, 1000);
 }
 
