@@ -25,7 +25,7 @@ const options = {
   onClose : [function (selectedDates) {
       if (selectedDates[0].getTime() - options.defaultDate.getTime() < 0) {
           Notify.failure("Please choose a date in the future");
-          refs.startB.removeAttribute('disabled');
+          refs.startB.removeAttribute('disabled', '');
           return;
       }
       refs.startB.removeAttribute('disabled');
@@ -72,6 +72,14 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
+// function addLeadingZero(value) {
+//     return String(value).padStart(2, '0');
+// }
+
 function addLeadingZero(value) {
-    return String(value).padStart(2, '0');
+  return value.padStart(2, '0');
 }
+
+// function addLeadingZero(value) {
+//     return value < 10 ? `0${value}` : value;
+// }
