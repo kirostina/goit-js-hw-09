@@ -30,6 +30,7 @@ const options = {
       }
       refs.startB.removeAttribute('disabled');
       diffT = selectedDates[0].getTime() - options.defaultDate.getTime();
+      instance.close();
   },
 ],
 };
